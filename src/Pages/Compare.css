@@ -1,0 +1,73 @@
+.compareContainer{
+    min-height: 100vh;
+    background-color: rgb(32, 30, 30);
+    display: flex;
+    max-width: 1500px;
+    margin:0 auto;
+    flex-direction: column;
+    align-items: center;
+}
+.compareContainer>h1{
+    margin-top:80px;
+    font-weight: 900;
+    font-size:2.5rem;
+    color:white;
+}
+.compareSelect{
+    background-color: rgb(32, 30, 30);
+    width: 95%;
+    margin-top:10px;
+}
+.displayCompareInfoAll{
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(44, 43, 43);
+    display: flex;
+    width:95%;
+    height: 500px;
+}
+.globeCompare{
+    width:150px;
+}
+.lineChartContainerCases{
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(44, 43, 43);
+    display: flex;
+    width:95%;
+    height: 500px;
+}
+.lineChartContainerDeaths{
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(44, 43, 43);
+    display: flex;
+    width:95%;
+    height: 500px;
+}
+.lineChartConainerNone{
+    display: none;
+}
+.imgContainer{
+    margin-top: 50px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.imgContainer>p{
+    margin-top: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color:rgb(145, 145, 145)
+}
+.imgContainerNoDisplay{
+    display: none;
+}
+@media(min-width: 1000px){
+    .compareSelect{
+        margin-top:20px
+    }
+}

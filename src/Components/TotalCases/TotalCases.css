@@ -1,0 +1,49 @@
+.totalContainer{
+    width:95%;
+    color:white;
+    background-color: rgb(44, 43, 43);
+    font-weight: 700;
+    padding:20px 30px;
+    box-shadow: 0px -4px 0px 0px rgb(145, 145, 145);
+    border-radius: 5px;
+}
+.total{
+    display: flex;
+    justify-content: space-between;
+}
+.totalTitle{
+    font-size: 1.4rem;
+    margin-bottom:10px;
+}
+.globe{
+    width: 30px;
+    height: 30px;
+}
+.confirmed{
+    margin-bottom: 5px;
+}
+.confirmedTotal{
+    font-size:1.5rem;
+    color:rgb(145, 145, 145);
+}
+.todayConfirmed{
+    color:rgb(233, 44, 44);
+    margin-left:5px;
+}
+.todayConfirmedNone{
+    display:none;
+}
+.perMilion{
+    font-weight: 400;
+    font-size:0.8rem;
+    color:rgb(233, 44, 44);
+}
+.point{
+    font-size: 0.6rem;
+    margin:0px 5px;
+}
+.tested{
+    font-weight: 400;
+    font-size:0.8rem;
+    color:rgb(113, 149, 255);
+}

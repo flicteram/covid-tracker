@@ -1,0 +1,89 @@
+.mostAffectedContainer{
+    width:95%;
+    padding:20px 0px;
+    border-top:1px solid rgb(145, 145, 145);
+    border-bottom:1px solid rgb(145, 145, 145);
+}
+
+.mostAffectedItem{
+    width:100%;
+    color:white;
+    background-color: rgb(44, 43, 43);
+    font-weight: 700;
+    padding:20px 30px;
+    box-shadow: 0px -4px 0px 0px rgb(233, 44, 44);
+    border-radius: 5px;
+    margin-top:20px;
+}
+.mostAffectedTitle{
+    display: flex;
+    align-items: center;
+}
+.mostAffectedImg{
+    width:25px;
+    height:25px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.mostAffectedCases{
+    color:rgb(145, 145, 145);
+    font-size:1rem;
+    font-weight: 500;
+    margin-bottom:10px;
+    margin-top:5px;
+}
+.mostAffectedCasesNumber{
+    font-size:1.5rem;
+    color:rgb(145, 145, 145);
+}
+.mostAffectedToday{
+    font-size:1.1rem;
+    color:rgb(233, 44, 44);
+    margin-left:5px;
+}
+.mostAffectedTodayNone{
+    display: none;
+}
+.mostAffected100{
+    margin-top:5px;
+    font-size:0.8rem;
+    font-weight: 400;
+    color:rgb(233, 44, 44);
+}
+.mostAffectedTopContainer{
+    display: flex;
+    margin:10px 0px;
+}
+.mostAffectedTop{
+    color:white;
+    font-weight: 900;
+    padding-left: 10px;
+}
+.redDot{
+    margin-top:6px;
+    background-color: rgb(233, 44, 44);
+    min-width:20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+@media(min-width:600px){
+    .mostAffectedCardsContainer{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    .mostAffectedItem{
+        padding:20px;
+        margin:0;
+        width: 100%;
+    }
+    .mostAffectedTopContainer{
+        margin:15px 0px;
+    }
+}
+@media(min-width:1200px){
+    .mostAffectedCardsContainer{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}

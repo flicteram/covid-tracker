@@ -1,0 +1,102 @@
+
+.tableAllContainer{
+    width: 95%;
+    margin:20px 0px;
+}
+.tableContainer{
+    width: 100%;
+    color:white;
+    background-color: rgb(44, 43, 43);
+    margin-top:20px;
+    border-radius: 5px;
+}
+.tableWrap{
+    padding-top:10px;
+    display: block;
+    width:100%;
+    overflow: auto;
+    color:white;
+}
+table{
+    width: 100%;
+    border-spacing: 0;
+}
+thead{
+    font-size: 0.9rem;
+    color:rgb(145, 145, 145);
+}
+td,th{
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgb(145, 145, 145);
+}
+tr{
+    text-align: center;
+    font-size: 0.9rem;
+}
+.paginition{
+    margin-top:10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+select{
+    outline: none;
+    margin-left: 5;
+    font-size:.75rem;
+    color:white;
+    border:none;
+    border-bottom:1px solid white;
+    background-color: inherit;
+    cursor: pointer;
+}
+select>option{
+    cursor: pointer;
+    background-color: rgb(145, 145, 145);
+
+}
+.buttonsContainer>button{
+    background-color: inherit;
+    border:none;
+    color:white;
+    width:40px;
+    height: 40px;
+    font-size:1rem;
+    font-weight: 900;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.buttonsContainer>.buttonNext{
+    margin:0px 10px;
+}
+
+.buttonsContainer>button:hover,
+.buttonsContainer>button:focus{
+    background-color: grey;
+}
+.page{
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+}
+.tableAllCountries{
+    color:white;
+    font-weight: 900;
+    margin-bottom:10px;
+}
+.tableWithFlag{
+    display: flex;
+    color:white;
+}
+.tableFlag{
+    margin-right: 5px;
+    width:20px;
+    height: 20px;
+    border-radius: 50%;
+}
+@media(min-width:1000px){
+    .searchTableContainer{
+        display: flex;
+        justify-content: space-between;
+    }
+}

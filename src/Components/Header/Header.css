@@ -1,0 +1,41 @@
+nav{
+    z-index: 1000;
+    position:fixed;
+    display: flex;
+    align-items:center;
+    justify-content: space-around;;
+    width: 100%;
+    background-color: rgba(44, 43, 43, 1);
+    padding:10px 0px;
+}
+.earthImg{
+    width:30px;
+    height: 30px;
+    transition:transform 500ms;
+}
+.loop{
+    width:30px;
+    height: 30px;
+    transition:transform 500ms;
+}
+.compare{
+    width:30px;
+    height: 30px;
+    transition:transform 500ms;
+}
+
+.earthImg:hover,
+.loop:hover,
+.compare:hover,
+.earthImg:focus,
+.loop:focus,
+.compare:focus{
+    transform: scale(1.1);
+    transition:transform 500ms;
+}
+.earthImg:active,
+.loop:active,
+.compare:active{
+    transform:scale(1);
+    transition:transform 500ms;
+}

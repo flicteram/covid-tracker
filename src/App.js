@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import React,{useContext} from 'react';
 import './App.css';
+import {Switch,Route} from 'react-router-dom'
+import Home from './Pages/Home'
+import Regions from './Pages/Regions';
+import Country from './Pages/Country'
+import Search from './Pages/Search';
+import Compare from './Pages/Compare';
+import { Context } from './Components/Context/Context';
 
 function App() {
+  const {isLoading} = useContext(Context)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='appContainer'>
+        <Switch>
+        {isLoading?<p className='loading'>Loading...</p>:
+        <Route exact path='/'>
+        <Home/>
+        </Route>}
+        <Route path='/regions/:continentName'>
+        <Regions/>
+        </Route>
+        <Route path='/country/:countryName'>
+        <Country/>
+        </Route>
+        <Route path='/search'>
+        <Search/>
+        </Route>
+        <Route path='/compare'>
+        <Compare/>
+        </Route>
+        </Switch>
     </div>
   );
 }
