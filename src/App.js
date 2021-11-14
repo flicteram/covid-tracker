@@ -9,14 +9,13 @@ import Compare from './Pages/Compare';
 import { Context } from './Components/Context/Context';
 
 function App() {
-  const {isLoading} = useContext(Context)
+
   return (
     <div className='appContainer'>
         <Switch>
-        {isLoading?<p className='loading'>Loading...</p>:
         <Route exact path='/'>
         <Home/>
-        </Route>}
+        </Route>
         <Route path='/regions/:continentName'>
         <Regions/>
         </Route>

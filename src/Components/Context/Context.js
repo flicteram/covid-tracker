@@ -26,6 +26,10 @@ function ContextProvider({children}){
         .then(response=>response.json())
         .then(data=>(setMostAffected(data)))
     },[])
+
+    if(isLoading){
+        return <p className='loading'>Loading...</p>
+    }
     return(
         <Context.Provider value={{covid,covidYesterday,history,mostAffected,continents,isLoading}}>
             {children}
