@@ -24,10 +24,7 @@ function ContextProvider({children}){
         .then(data=>setContinents(data))
         fetch('https://disease.sh/v3/covid-19/countries?sort=cases')
         .then(response=>response.json())
-        .then(data=>setMostAffected(data))
-        fetch('https://covid-situations.herokuapp.com/v1/situations')
-        .then(response=>response.json())
-        .then(data=>console.log(data))
+        .then(data=>(setMostAffected(data)))
     },[])
     return(
         <Context.Provider value={{covid,covidYesterday,history,mostAffected,continents,isLoading}}>

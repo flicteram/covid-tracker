@@ -14,7 +14,7 @@ function Country(){
     let {countryName} = useParams()
     let country = mostAffected.filter(country=>country.country===countryName)
 
-    console.log(country)
+
     let currentTime = new Date()
     let updatedLast = new Date(country[0].updated).toString()
     let updated = Math.round((currentTime.getTime()-country[0].updated)/60000)

@@ -26,17 +26,18 @@ function Regions(){
         .then(data=>(setContinentYesterday(data)))
     },[continentName])
     useEffect(()=>{
-        fetch(`https://disease.sh/v3/covid-19/historical/${continent||continent.countries.join(',')}?lastdays=30`)
-        .then(response=>response.json())
-        .then(data=>(setContinentHistory(data)))
-    },[])
-
+        if(continent.countries){
+            fetch(`https://disease.sh/v3/covid-19/historical/${[...continent.countries]}/?lastdays=30`)
+            .then(response=>response.json())
+            .then(data=>(setContinentHistory(data)))
+        }
+     },[continent])
 
     if(continentHistory.length>0){
         continentCases=continentHistory.filter(item=>item!==null).map(item=>Object.values(item.timeline.cases)).reduce((r, a) => a.map((b, i) => (r[i] || 0) + b), [])
         continentDeaths=continentHistory.filter(item=>item!==null).map(item=>Object.values(item.timeline.deaths)).reduce((r, a) => a.map((b, i) => (r[i] || 0) + b), [])
         historyDates= Object.keys(continentHistory.filter(item=>item!==null)[0].timeline.cases)
-            
+          
     }
 
     return(
