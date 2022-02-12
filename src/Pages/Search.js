@@ -4,6 +4,7 @@ import { Context } from "../Components/Context/Context";
 import globe from '../Components/Images/globe.png'
 import './Search.css'
 import Header from "../Components/Header/Header";
+import Footer from '../Components/Footer/Footer'
 
 function Search(){
     const [searchState,setSearchState]=useState('')
@@ -20,21 +21,24 @@ function Search(){
         </Link>
     ))
     return (
-        <div className='searchContainer'>
+        <div>
             <Header/>
-            <div className='search'>
-                <h1>SEARCH</h1>
-                <input type='text'
-                placeholder='Search country' 
-                className='searchInput' 
-                onChange={e=>setSearchState(e.target.value)} 
-                value={searchState}/>
+            <div className="searchContainer">
+                <div className='search'>
+                    <h1>SEARCH</h1>
+                    <input type='text'
+                    placeholder='Search country' 
+                    className='searchInput' 
+                    onChange={e=>setSearchState(e.target.value)} 
+                    value={searchState}/>
+                </div>
+                {searchState.trim()!==''?<div className='searchResultContainer'>{searchDisplay}</div>:
+                <div className='searchEmpty'>
+                    <img alt={'globe'} src={globe}/>
+                    <p>Search for a country</p>
+                </div>}
             </div>
-            {searchState.trim()!==''?<div className='searchResultContainer'>{searchDisplay}</div>:
-            <div className='searchEmpty'>
-                <img alt={'globe'} src={globe}/>
-                <p>Search for a country</p>
-            </div>}
+            <Footer/>
         </div>
     )
 }

@@ -1,16 +1,24 @@
 import React from 'react'
 import './Header.css'
-import globe from '../Images/globe.png'
-import loop from '../Images/nav-glass.png'
-import compare from '../Images/statistics.png'
 import {Link} from 'react-router-dom'
+import SearchIcon from '@mui/icons-material/Search';
+import PublicIcon from '@mui/icons-material/Public';
+import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 
 function Header(){
+    const iconsStyles={
+        fontSize:'45px',
+        color:'white',
+        transition:'color 500ms',
+        '&:hover':{
+            color:'rgb(113, 149, 255)',
+        }
+    }
     return(
     <nav className='nav'>
-        <Link to='/'><img className='earthImg' src={globe} alt={'global data'} /></Link>
-        <Link to='/search'><img  className='loop' src={loop} alt={'search'}/></Link>
-        <Link to='/compare'><img className='compare' src={compare}/></Link>
+        <Link to='/'><PublicIcon sx={iconsStyles}/></Link>
+        <Link to='/search'><SearchIcon sx={iconsStyles}/></Link>
+        <Link to='/compare'><StackedLineChartIcon sx={iconsStyles}/></Link>
     </nav>
     )
 }

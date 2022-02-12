@@ -1,0 +1,19 @@
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: red;
+    padding:15px 0px;
+    background-color: rgba(44, 43, 43, 1);
+}
+footer>h4{
+    color:white;
+    margin-bottom: 10px;
+}
+.iconsFooter{
+    display: flex;
+    justify-content: space-between;
+    width: 120px;
+}

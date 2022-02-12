@@ -6,6 +6,7 @@ import Cards from '../Components/Cards/Cards'
 import Chart from '../Components/Chart/Chart'
 import Table from '../Components/Table/Table'
 import Header from '../Components/Header/Header'
+import Footer from '../Components/Footer/Footer'
 
 function Regions(){
     const {continentName} = useParams()
@@ -39,39 +40,43 @@ function Regions(){
         historyDates= Object.keys(continentHistory.filter(item=>item!==null)[0].timeline.cases)
           
     }
-
+    if(!historyDates.length){
+        return (<div className='loading'>Loading...</div>)
+    }
     return(
-        historyDates.length===0?<div className='loading'>Loading...</div>:
-        <div className='regionsContainer'>
+        <div>
             <Header/>
-            <div className='regionsTitleContainer'>
-                <p>REGION</p>
-                <h1>{continentName}</h1>
+            <div className='regionsContainer'>
+                <div className='regionsTitleContainer'>
+                    <p>REGION</p>
+                    <h1>{continentName}</h1>
+                </div>
+                <Cards 
+                totalCases={continent.cases}
+                todayCases={continent.todayCases}
+                perOneMillion={Math.round(continent.casesPerOneMillion)}
+                tests={continent.tests}
+                activeTotal={continent.active}
+                critical={continent.critical}
+                activeYesterday={continentYesterday.active}
+                recovered={continent.recovered}
+                todayRecovered={continent.todayRecovered}
+                recoveredPercentage={Math.round(continent.recovered/continent.cases*100)}
+                deaths={continent.deaths}
+                todayDeaths={continent.todayDeaths}
+                deathsPerOneMillion={continent.deathsPerOneMillion}
+                />
+                <Chart
+                cases={continentCases}
+                deaths={continentDeaths}
+                label={historyDates}
+                />
+                <Table
+                mostAffected={mostAffected.filter(item=>item.continent===continentName)}
+                title={'COUNTRIES'}
+                />
             </div>
-            <Cards 
-            totalCases={continent.cases}
-            todayCases={continent.todayCases}
-            perOneMillion={Math.round(continent.casesPerOneMillion)}
-            tests={continent.tests}
-            activeTotal={continent.active}
-            critical={continent.critical}
-            activeYesterday={continentYesterday.active}
-            recovered={continent.recovered}
-            todayRecovered={continent.todayRecovered}
-            recoveredPercentage={Math.round(continent.recovered/continent.cases*100)}
-            deaths={continent.deaths}
-            todayDeaths={continent.todayDeaths}
-            deathsPerOneMillion={continent.deathsPerOneMillion}
-            />
-            <Chart
-            cases={continentCases}
-            deaths={continentDeaths}
-            label={historyDates}
-            />
-            <Table
-            mostAffected={mostAffected.filter(item=>item.continent===continentName)}
-            title={'COUNTRIES'}
-            />
+            <Footer/>
         </div>
     )
 }

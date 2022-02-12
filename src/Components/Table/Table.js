@@ -149,8 +149,8 @@ function Table({mostAffected,title}){
             setPageSize(Number(e.target.value))
           }}
         >
-          {[5, 10, 15, All ].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
+          {[5, 10, 15, All ].map((pageSize,index) => (
+            <option key={index} value={pageSize}>
               Show {pageSize===All?'All':pageSize}
             </option>
           ))}

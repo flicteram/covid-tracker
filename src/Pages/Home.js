@@ -7,6 +7,7 @@ import Table from "../Components/Table/Table";
 import { Context } from "../Components/Context/Context";
 import './Home.css'
 import Header from "../Components/Header/Header";
+import Footer from "../Components/Footer/Footer";
 
 function Home(){
     const {covid,covidYesterday,history,mostAffected} = useContext(Context)
@@ -30,41 +31,44 @@ function Home(){
     }
 
     return(
-        <div className='homeContainer'>
+        <div >
             <Header/>
-            <div className='homeTitleContainer'>
-                <h1>GLOBAL</h1>
-                <p>Affected countries: {covid.affectedCountries}</p>
+            <div className='homeContainer'>
+                <div className='homeTitleContainer'>
+                    <h1>GLOBAL</h1>
+                    <p>Affected countries: {covid.affectedCountries}</p>
+                </div>
+                <Cards
+                totalCases={covid.cases}
+                todayCases={covid.todayCases}
+                perOneMillion={Math.round(covid.casesPerOneMillion)}
+                tests={covid.tests}
+                activeTotal={covid.active}
+                critical={covid.critical}
+                activeYesterday={covidYesterday.active}
+                recovered={covid.recovered}
+                todayRecovered={covid.todayRecovered}
+                recoveredPercentage={Math.round(covid.recovered/covid.cases*100)}
+                deaths={covid.deaths}
+                todayDeaths={covid.todayDeaths}
+                deathsPerOneMillion={covid.deathsPerOneMillion}
+                />
+                <Chart
+                cases={Object.values(history.cases)}
+                deaths={Object.values(history.deaths)}
+                label={Object.keys(history.cases)}/>
+                <Continents/>
+                <MostA/>
+                <Table
+                mostAffected={mostAffected}
+                title={'ALL COUNTRIES'}
+                />
+                <div className='updated'>
+                    <p className='updatedTime'>Last updated {timeAgo(updated)}</p>
+                    <p className='updatedDate'>{updatedLast}</p>
+                </div>
             </div>
-            <Cards
-            totalCases={covid.cases}
-            todayCases={covid.todayCases}
-            perOneMillion={Math.round(covid.casesPerOneMillion)}
-            tests={covid.tests}
-            activeTotal={covid.active}
-            critical={covid.critical}
-            activeYesterday={covidYesterday.active}
-            recovered={covid.recovered}
-            todayRecovered={covid.todayRecovered}
-            recoveredPercentage={Math.round(covid.recovered/covid.cases*100)}
-            deaths={covid.deaths}
-            todayDeaths={covid.todayDeaths}
-            deathsPerOneMillion={covid.deathsPerOneMillion}
-            />
-            <Chart
-            cases={Object.values(history.cases)}
-            deaths={Object.values(history.deaths)}
-            label={Object.keys(history.cases)}/>
-            <Continents/>
-            <MostA/>
-            <Table
-            mostAffected={mostAffected}
-            title={'ALL COUNTRIES'}
-            />
-            <div className='updated'>
-                <p className='updatedTime'>Last updated {timeAgo(updated)}</p>
-                <p className='updatedDate'>{updatedLast}</p>
-            </div>
+            <Footer/>
         </div>
         
     )

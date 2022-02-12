@@ -4,9 +4,10 @@ nav{
     display: flex;
     align-items:center;
     justify-content: space-around;;
+    left: 0;
     width: 100%;
     background-color: rgba(44, 43, 43, 1);
-    padding:10px 0px;
+    padding:5px 0px;
 }
 .earthImg{
     width:30px;

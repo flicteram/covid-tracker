@@ -6,6 +6,7 @@ import globe from '../Components/Images/globe.png'
 import './Compare.css'
 import Select from 'react-select'
 import { Line  } from 'react-chartjs-2'
+import Footer from '../Components/Footer/Footer'
 
 function Compare(){
     const [compareState,setCompareState]=useState([])
@@ -150,30 +151,31 @@ function Compare(){
 }
 
     return(
-        <div className="compareContainer">
+        <div>
             <Header/>
-            <h1>COMPARE</h1>
-            <div className='compareSelect'>
-                <Select className='select' backspaceRemovesValue={true} onChange={option=>setCompareState(option)} closeMenuOnScroll={true} isMulti={true} options={options}/>
+            <div className="compareContainer">
+                <h1>COMPARE</h1>
+                <div className='compareSelect'>
+                    <Select className='select' backspaceRemovesValue={true} onChange={option=>setCompareState(option)} closeMenuOnScroll={true} isMulti={true} options={options}/>
+                </div>
+                <div className={compareState.length===0?'imgContainer':'imgContainerNoDisplay'}>
+                    <img className="globeCompare" src={globe} alt='globe'/>
+                    <p>Select countries to compare</p>
+                </div>
+                <div className={compareState.length>0?'lineChartContainerCases':'lineChartConainerNone'}>
+                    <Line options={optionsDataCases} data={chartDataCases}/>
+                </div>
+                <div className={compareState.length>0?'lineChartContainerDeaths':'lineChartConainerNone'}>
+                    <Line options={optionsDataDeaths} data={chartDataDeaths}/>
+                </div>
+                    {compareState.length>0&&
+                    <Table
+                    mostAffected={tableArray}
+                    title={'More informations'}
+                    />
+                }
             </div>
-            <div className={compareState.length===0?'imgContainer':'imgContainerNoDisplay'}>
-                <img className="globeCompare" src={globe} alt='globe'/>
-                <p>Select countries to compare</p>
-            </div>
-            <div className={compareState.length>0?'lineChartContainerCases':'lineChartConainerNone'}>
-                <Line options={optionsDataCases} data={chartDataCases}/>
-            </div>
-            <div className={compareState.length>0?'lineChartContainerDeaths':'lineChartConainerNone'}>
-                <Line options={optionsDataDeaths} data={chartDataDeaths}/>
-            </div>
-                {compareState.length>0&&
-                <Table
-                mostAffected={tableArray}
-                title={'More informations'}
-                />
-            }
-
-            
+            <Footer/>
         </div>
     )
 }
