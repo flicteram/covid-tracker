@@ -10,17 +10,19 @@ import { Line  } from 'react-chartjs-2'
 function Compare(){
     const [compareState,setCompareState]=useState([])
     const [state,setState]= useState([])
-    const [loading,setLoading]=useState(true)
     const {mostAffected} = useContext(Context)
     let chartDataCases = {}
     let chartDataDeaths = {}
     let tableArray = []
 
+    const colors = ['green','red','blue','royalblue','yellow','purple','orange','black','grey','pink']
     
     useEffect(()=>{
-        fetch(`https://disease.sh/v3/covid-19/historical/${compareState.map(item=>item.value).join(',')}/?lastdays=30`)
-        .then(response=>response.json())
-        .then(data=>(setState(data),setLoading(false)))
+        if(compareState.length){
+            fetch(`https://disease.sh/v3/covid-19/historical/${compareState.map(item=>item.value).join(',')}/?lastdays=30`)
+            .then(response=>response.json())
+            .then(data=>setState(data))
+        }
     },[compareState])
 
     const options = mostAffected.map(item=>{
@@ -72,8 +74,8 @@ function Compare(){
                 return {
                     label:item.country,
                     data:Object.values(item.timeline.cases),
-                    backgroundColor:index===0?'green':index===1?'red':index===2?'blue':index===3?'yellow':index===4?'grey':index===6?'royalblue':index===7?'white':'black',
-                    borderColor:index===0?'green':index===1?'red':index===2?'blue':index===3?'yellow':index===4?'grey':index===6?'royalblue':index===7?'white':'black',
+                    backgroundColor:colors[index],
+                    borderColor:colors[index],
                     fill: false,
                     pointRadius:0,
                     pointHoverRadius:5,
@@ -86,8 +88,8 @@ function Compare(){
                 return {
                     label:item.country,
                     data:Object.values(item.timeline.deaths),
-                    backgroundColor:index===0?'green':index===1?'red':index===2?'blue':index===3?'yellow':index===4?'grey':index===6?'royalblue':index===7?'white':'black',
-                    borderColor:index===0?'green':index===1?'red':index===2?'blue':index===3?'yellow':index===4?'grey':index===6?'royalblue':index===7?'white':'black',
+                    backgroundColor:colors[index],
+                    borderColor:colors[index],
                     fill: false,
                     pointRadius:0,
                     pointHoverRadius:5,
@@ -155,20 +157,20 @@ function Compare(){
                 <Select className='select' backspaceRemovesValue={true} onChange={option=>setCompareState(option)} closeMenuOnScroll={true} isMulti={true} options={options}/>
             </div>
             <div className={compareState.length===0?'imgContainer':'imgContainerNoDisplay'}>
-                <img className="globeCompare" src={globe}/>
+                <img className="globeCompare" src={globe} alt='globe'/>
                 <p>Select countries to compare</p>
             </div>
             <div className={compareState.length>0?'lineChartContainerCases':'lineChartConainerNone'}>
-            <Line options={optionsDataCases} data={chartDataCases}/>
+                <Line options={optionsDataCases} data={chartDataCases}/>
             </div>
             <div className={compareState.length>0?'lineChartContainerDeaths':'lineChartConainerNone'}>
-            <Line options={optionsDataDeaths} data={chartDataDeaths}/>
+                <Line options={optionsDataDeaths} data={chartDataDeaths}/>
             </div>
-            {compareState.length>0&&
-            <Table
-            mostAffected={tableArray}
-            title={'More informations'}
-            />
+                {compareState.length>0&&
+                <Table
+                mostAffected={tableArray}
+                title={'More informations'}
+                />
             }
 
             

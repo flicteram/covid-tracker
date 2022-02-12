@@ -1,5 +1,5 @@
-import React,{useMemo,useContext} from "react";
-import { useTable,usePagination,useGlobalFilter,Cell} from 'react-table'
+import React,{useMemo} from "react";
+import { useTable,usePagination,useGlobalFilter} from 'react-table'
 import Filter from "../Filter/Filter";
 import { Link } from "react-router-dom";
 import './Table.css'
@@ -26,7 +26,7 @@ function Table({mostAffected,title}){
             accessor:'col1',
             Cell:({cell:{value}})=>(
               <Link to={`/country/${value[0]}`} className='tableWithFlag'>
-                <img className='tableFlag' src={value[1]}/>
+                <img className='tableFlag' src={value[1]} alt={`${value[1]}flag`}/>
                 <p>{value[0]}</p>
               </Link>)
           },
@@ -73,8 +73,6 @@ function Table({mostAffected,title}){
             canPreviousPage,
             canNextPage,
             pageOptions,
-            pageCount,
-            gotoPage,
             nextPage,
             previousPage,
             setPageSize,

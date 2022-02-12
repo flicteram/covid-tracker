@@ -41,15 +41,20 @@ function Country(){
         fetch(`https://disease.sh/v3/covid-19/historical/${countryName}?lastdays=30`)
         .then(response=>response.json())
         .then(data=>(setCountryHistory(data),setLoading(false)))
-    },[])
+    },[countryName])
+
+    if(loading){
+        return(
+            <p className='loading'>Loading...</p>
+        )
+    }
 
     return (
-        loading?<p className='loading'>Loading...</p>:
         <div className='countryDetailsContainer'>
             <Header/>
             <div className='countryDetailsTitle'>
                 <div className='countryDetailsTitleTop'>
-                    <img src={country[0].countryInfo.flag}/>
+                    <img src={country[0].countryInfo.flag} alt={`${country[0].country} country`}/>
                     <h1>{country[0].country}</h1>
                 </div>
                 <h2>POPULATION: {country[0].population.toLocaleString()}</h2>

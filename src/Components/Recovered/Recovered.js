@@ -9,7 +9,7 @@ function Recovered({ recovered,todayRecovered,recoveredPercentage }){
         <div className='recoveredContainer'>
             <div className='recovered'>
                 <h2 className='recoveredTitle'>Recovered</h2>
-                <img className='recoveredImg' alt={'heart image'} src={heart}/>
+                <img className='recoveredImg' alt={'heart'} src={heart}/>
             </div>
             <p className='recoveredP'><span className='recoveredTotal'>{recovered.toLocaleString()}</span><span className={todayRecovered!==0?'recoveredToday':'recoveredTodayNone'}>+{todayRecovered.toLocaleString()}</span></p>
             <p className='recoveredProcent'>{recoveredPercentage}% recovered</p>
