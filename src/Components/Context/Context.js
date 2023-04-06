@@ -8,26 +8,37 @@ function ContextProvider({children}){
     const [continents,setContinents]=useState([])
     const [mostAffected,setMostAffected]=useState([])
     const [isLoading,setIsLoading]=useState(true)
+    const [error, setError] = useState(false)
 
     useEffect(()=>{
-        fetch('https://disease.sh/v3/covid-19/all')
-        .then(response=>response.json())
-        .then(data=>setCovid(data))
-        fetch('https://disease.sh/v3/covid-19/all?yesterday=true')
-        .then(response=>response.json())
-        .then(data=>setCovidYesterday(data))
-        fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=30')
-        .then(response=>response.json())
-        .then(data=>setHistory(data))
-        .then(()=>setIsLoading(false))
-        fetch('https://disease.sh/v3/covid-19/continents')
-        .then(response=>response.json())
-        .then(data=>setContinents(data))
-        fetch('https://disease.sh/v3/covid-19/countries?sort=cases')
-        .then(response=>response.json())
-        .then(data=>(setMostAffected(data)))
+
+        const fetchData = async()=>{
+            await Promise.all([
+                fetch('https://disease.sh/v3/covid-19/all')
+                .then(r=>r.json()), 
+                fetch('https://disease.sh/v3/covid-19/all?yesterday=true')
+                .then(r=>r.json()),
+                fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=30')
+                .then(r=>r.json()),
+                fetch('https://disease.sh/v3/covid-19/continents')
+                .then(r=>r.json()),
+                fetch('https://disease.sh/v3/covid-19/countries?sort=cases')
+                .then(r=>r.json())
+                ]).then(([covidData, covidDataYesterday, covidDataHistory, covidDataContinents, covidDataMostAffected])=>{
+                    setCovid(covidData)
+                    setCovidYesterday(covidDataYesterday)
+                    setHistory(covidDataHistory)
+                    setContinents(covidDataContinents)
+                    setMostAffected(covidDataMostAffected)
+                }).then(()=>setIsLoading(false))
+                .catch(()=>setError(true))
+        }
+        fetchData()
     },[])
 
+    if(error){
+        return <p className='loading'>We have enocuntered an error, please refresh the page!</p>
+    }
     if(isLoading){
         return <p className='loading'>Loading...</p>
     }
